@@ -1,0 +1,430 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* ===== FONDO DE FLORES ===== */
+.flores-fondo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #FFB347 0%, #FFDAB9 50%, #FFA07A 100%);
+    z-index: -2;
+}
+
+.flores-fondo::before {
+    content: "🌸 🌻 🌺 🌼 🌷 🌸 🌻 🌺 🌼 🌷";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: clamp(40px, 10vw, 60px);
+    color: rgba(255, 255, 255, 0.15);
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.5;
+    text-align: center;
+    pointer-events: none;
+}
+
+/* ===== SOL ANIMADO ===== */
+.sol {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    font-size: clamp(45px, 12vw, 70px);
+    animation: girarSol 20s linear infinite;
+    z-index: 1;
+    filter: drop-shadow(0 0 15px rgba(255, 180, 70, 0.8));
+}
+
+@keyframes girarSol {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ===== MARIPOSAS VOLANDO ===== */
+.mariposa {
+    position: fixed;
+    font-size: clamp(25px, 7vw, 35px);
+    z-index: 1;
+    animation: volar 12s ease-in-out infinite;
+}
+
+.m1 { top: 15%; left: 5%; animation-duration: 14s; animation-delay: 0s; }
+.m2 { top: 70%; left: 85%; animation-duration: 11s; animation-delay: 2s; }
+.m3 { top: 40%; left: 90%; animation-duration: 16s; animation-delay: 5s; }
+.m4 { top: 80%; left: 10%; animation-duration: 13s; animation-delay: 1s; }
+
+@keyframes volar {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, -30px) rotate(15deg); }
+    50% { transform: translate(-15px, -50px) rotate(-10deg); }
+    75% { transform: translate(30px, 15px) rotate(20deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ===== PANTALLAS ===== */
+.pantalla {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.6s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    padding: 20px;
+}
+
+.pantalla.activa {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* ===== BOTÓN DE LA CARTA (SOBRE) ===== */
+.carta-boton {
+    background: linear-gradient(145deg, #FF8C42, #FFB347);
+    width: min(180px, 50vw);
+    height: min(180px, 50vw);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 30px;
+}
+
+.carta-boton:active {
+    transform: scale(0.98);
+}
+
+.sobre {
+    font-size: clamp(50px, 20vw, 80px);
+    animation: latir 1.8s ease-in-out infinite;
+}
+
+@keyframes latir {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.carta-boton p {
+    color: white;
+    margin-top: 15px;
+    font-size: clamp(12px, 3.5vw, 14px);
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+}
+
+h1 {
+    color: #5C2E00;
+    font-size: clamp(1.5rem, 7vw, 2.2rem);
+    text-shadow: 3px 3px 8px rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.corazoncitos {
+    font-size: clamp(18px, 6vw, 24px);
+    margin-top: 15px;
+    letter-spacing: 8px;
+}
+
+/* ===== CONTENIDO DE LA CARTA ===== */
+.carta-contenido {
+    background: rgba(255, 255, 255, 0.96);
+    max-width: 550px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 25px;
+    padding: clamp(20px, 5vw, 30px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border-left: 8px solid #FF8C42;
+    animation: aparecer 0.5s ease;
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #FF8C42;
+    transition: transform 0.2s;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.cerrar:active {
+    transform: rotate(90deg);
+}
+
+.encabezado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.encabezado h2 {
+    color: #D2691E;
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+}
+
+.sol-icon {
+    font-size: clamp(25px, 8vw, 35px);
+    animation: girarSol 8s linear infinite;
+    display: inline-block;
+}
+
+.mariposa-icon {
+    font-size: clamp(22px, 7vw, 30px);
+    animation: volarIcon 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes volarIcon {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(10deg); }
+}
+
+.mensaje p {
+    color: #5C2E00;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    font-size: clamp(14px, 4vw, 16px);
+}
+
+.flor-mensaje {
+    text-align: center;
+    font-size: clamp(22px, 7vw, 28px);
+    margin: 15px 0;
+    letter-spacing: 5px;
+}
+
+.frase-amor {
+    font-style: italic;
+    font-size: clamp(13px, 4vw, 16px);
+    text-align: center;
+    color: #FF8C42;
+    background: #FFF3E0;
+    padding: 12px;
+    border-radius: 20px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+.firma {
+    text-align: right;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 2px dashed #FFB347;
+}
+
+.firma p {
+    margin-bottom: 5px;
+    color: #D2691E;
+    font-size: clamp(13px, 4vw, 15px);
+}
+
+.nombre {
+    font-size: clamp(1rem, 5vw, 1.2rem);
+    font-weight: bold;
+    color: #FF8C42;
+}
+
+.decoracion {
+    text-align: center;
+    margin-top: 20px;
+    font-size: clamp(14px, 4vw, 18px);
+    letter-spacing: 3px;
+}
+
+/* ===== SCROLL PERSONALIZADO ===== */
+.carta-contenido::-webkit-scrollbar {
+    width: 5px;
+}
+
+.carta-contenido::-webkit-scrollbar-track {
+    background: #FFE4C4;
+    border-radius: 10px;
+}
+
+.carta-contenido::-webkit-scrollbar-thumb {
+    background: #FF8C42;
+    border-radius: 10px;
+}
+
+/* ===== BOTÓN DE FOTO ===== */
+.btn-foto {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: linear-gradient(145deg, #FF8C42, #FFB347);
+    border: none;
+    color: white;
+    font-size: clamp(12px, 4vw, 16px);
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.btn-foto:active {
+    transform: scale(0.96);
+}
+
+/* ===== LIGHTBOX (VENTANA DE FOTO) ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lightbox-contenido {
+    position: relative;
+    max-width: 92%;
+    max-height: 90%;
+    animation: aparecerFoto 0.3s ease;
+}
+
+@keyframes aparecerFoto {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-contenido img {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 140, 66, 0.4);
+    border: 2px solid #FFB347;
+}
+
+.cerrar-foto {
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #FF8C42;
+    color: white;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cerrar-foto:active {
+    transform: scale(1.1);
+}
+
+.pie-foto {
+    text-align: center;
+    color: white;
+    margin-top: 12px;
+    font-size: clamp(12px, 4vw, 14px);
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ===== AJUSTES PARA MÓVIL MUY PEQUEÑO ===== */
+@media (max-width: 480px) {
+    .carta-contenido {
+        width: 95%;
+        padding: 18px;
+    }
+    
+    .btn-foto {
+        bottom: 15px;
+        left: 15px;
+        padding: 8px 14px;
+        white-space: normal;
+        font-size: 11px;
+    }
+    
+    .encabezado {
+        gap: 8px;
+    }
+    
+    .cerrar {
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+    }
+    
+    .mensaje p {
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+}
+
+/* ===== TOUCH OPTIMIZATIONS ===== */
+@media (hover: none) {
+    .carta-boton:hover {
+        transform: none;
+    }
+    
+    .btn-foto:hover {
+        transform: none;
+    }
+    
+    .cerrar:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Para mi Mamá - Con amor infinito 🌸</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <!-- Fondo de flores -->
+    <div class="flores-fondo"></div>
+
+    <!-- Sol animado -->
+    <div class="sol">☀️</div>
+
+    <!-- Mariposas volando -->
+    <div class="mariposa m1">🦋</div>
+    <div class="mariposa m2">🦋</div>
+    <div class="mariposa m3">🦋</div>
+    <div class="mariposa m4">🦋</div>
+
+    <!-- Pantalla de inicio -->
+    <div id="intro" class="pantalla activa">
+        <div class="carta-boton" id="abrir-carta">
+            <div class="sobre">💌</div>
+            <p>Toca para abrir tu carta</p>
+        </div>
+        <h1>Para ti, Mami</h1>
+        <p class="corazoncitos">❤️ 🌸 🦋 ☀️</p>
+    </div>
+
+    <!-- Pantalla de la carta -->
+    <div id="carta" class="pantalla">
+        <div class="carta-contenido">
+            <div class="cerrar" id="cerrar-carta">✖</div>
+            
+            <div class="encabezado">
+                <span class="sol-icon">☀️</span>
+                <h2>Querida Mamá,</h2>
+                <span class="mariposa-icon">🦋</span>
+            </div>
+
+            <div class="mensaje">
+                <p>
+                    Se que te debi hacer esto ya hace dias pero no sabia bien como se hacia ahora ya aprendi bien y este va a hacer el primero de un monto que te voy a hacer 
+                    <strong>¡porque te amo mucho!</strong>
+                </p>
+
+                <p>
+                    Aveces vos pensas que no te quiero pero vos una de las personas mas importantes de mi vida aunque aveces no paresca o no lo demuestro te amo con toda mi alma 
+                </p>
+
+                <div class="flor-mensaje">
+                    🌸 🌻 🌺
+                </div>
+
+                <p>
+                    Gracias por cada sacrificio, cada abrazo, cada palabra de aliento.
+                    Y que cuando me regañas es porque me queres mucho
+                </p>
+
+                <p class="frase-amor">
+                    "Perdon si me porto muy mal no es siempre mi culpa mamá te quiero "
+                </p>
+
+                <p>
+                    Si mi papá mira que se espere a su tiempo que tambien le voy a hacer uno
+                </p>
+            </div>
+
+            <div class="firma">
+                <p>Con todo mi amor,</p>
+                <p class="nombre">❤️DE SANTIAGO❤️</p>
+            </div>
+
+            <div class="decoracion">
+                🌸 🦋 ☀️ 🌸 🦋 ☀️
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón para mostrar foto -->
+    <button id="btn-foto" class="btn-foto">📸 Ver foto especial</button>
+
+    <!-- Ventana emergente (lightbox) para la foto -->
+    <div id="lightbox" class="lightbox">
+        <div class="lightbox-contenido">
+            <span class="cerrar-foto" id="cerrar-foto">&times;</span>
+            <img id="foto-mama" src="foto.jpg" alt="Foto especial para mamá">
+            <p class="pie-foto">🌸 Para la mejor mamá del mundo 🌸</p>
+        </div>
+    </div>
+
+    <audio id="musica-fondo" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
